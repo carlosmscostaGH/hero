@@ -15,7 +15,7 @@ public class Game {
 
     public Game() throws IOException {
         try {
-            hero = new Hero(10,10);
+            hero = new Hero(new Position(10,10));
             Terminal terminal = new
                     DefaultTerminalFactory().createTerminal();
             screen = new TerminalScreen(terminal);
@@ -45,10 +45,13 @@ public class Game {
         }
     }
     private void processKey(KeyStroke key) {
-        if (key.getKeyType() == KeyType.ArrowLeft) hero.moveLeft();
-        if (key.getKeyType() == KeyType.ArrowRight) hero.moveRight();
-        if (key.getKeyType() == KeyType.ArrowUp) hero.moveUp();
-        if (key.getKeyType() == KeyType.ArrowDown) hero.moveDown();
+        if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());
+        if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
+        if (key.getKeyType() == KeyType.ArrowUp) moveHero(hero.moveUp());
+        if (key.getKeyType() == KeyType.ArrowDown) moveHero(hero.moveDown());
 
+    }
+    private void moveHero(Position position) {
+        hero.setPosition(position);
     }
 }
