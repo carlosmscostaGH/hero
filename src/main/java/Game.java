@@ -14,8 +14,10 @@ public class Game {
     private Hero hero;
 
     public Game() throws IOException {
+        Position position = new Position(10,10);
+        hero = new Hero(position);
         try {
-            hero = new Hero(new Position(10,10));
+            //hero = new Hero(new Position(10,10));
             Terminal terminal = new
                     DefaultTerminalFactory().createTerminal();
             screen = new TerminalScreen(terminal);
