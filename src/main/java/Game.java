@@ -44,7 +44,6 @@ public class Game {
         }
     }
     private void processKey(KeyStroke key) {
-        System.out.println(key);
         if (key.getKeyType() == KeyType.ArrowLeft) x-= 1;
         if (key.getKeyType() == KeyType.ArrowRight) x+= 1;
         if (key.getKeyType() == KeyType.ArrowUp) y-= 1;
