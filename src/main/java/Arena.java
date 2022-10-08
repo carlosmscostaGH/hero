@@ -9,9 +9,13 @@ public class Arena {
     private int width;
     private Hero hero;
 
+    private Position position;
+
     public Arena(int height, int width) {
         this.height = height;
         this.width = width;
+        position = new Position(10,10);
+        hero = new Hero(position);
     }
     public void processKey(KeyStroke key){
         if (key.getKeyType() == KeyType.ArrowLeft) moveHero(hero.moveLeft());

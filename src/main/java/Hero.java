@@ -22,7 +22,7 @@ public class Hero {
     }
 
     public void draw(Screen screen){
-        screen.setCharacter(getPosition().getX(), getPosition().getY(), TextCharacter.fromCharacter('X')[0]);
+        screen.setCharacter(position.getX(), position.getY(), TextCharacter.fromCharacter('X')[0]);
     }
 
     public Position getPosition() {
