@@ -5,34 +5,13 @@ import com.googlecode.lanterna.graphics.TextGraphics;
 
 import java.awt.*;
 
-public class Wall {
-    private int c;
-    private int i;
+public class Wall extends Element{
 
     public Wall(int c, int i) {
-        this.c = c;
-        this.i = i;
+        super(c,i);
     }
-
-
     public void draw(TextGraphics graphics) {
         graphics.setBackgroundColor(TextColor.Factory.fromString("#FFFFFF"));
-        graphics.putString(new TerminalPosition(this.c, this.i), " ");
-    }
-
-    public int getC() {
-        return c;
-    }
-
-    public void setC(int c) {
-        this.c = c;
-    }
-
-    public int getI() {
-        return i;
-    }
-
-    public void setI(int i) {
-        this.i = i;
+        graphics.putString(new TerminalPosition(position.getX(), position.getY()), " ");
     }
 }

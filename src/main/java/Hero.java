@@ -5,10 +5,14 @@ import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
 import com.googlecode.lanterna.screen.Screen;
 
-public class Hero {
-    private Position position;
-
-    public Hero(Position position) {
+public class Hero extends Element{
+    public Hero(int x, int y) {
+        super(x, y);
+    }
+    public Position getPosition() {
+        return position;
+    }
+    public void setPosition(Position position) {
         this.position = position;
     }
 
@@ -29,13 +33,5 @@ public class Hero {
         graphics.setForegroundColor(TextColor.Factory.fromString("#000000"));
         graphics.enableModifiers(SGR.BOLD);
         graphics.putString(new TerminalPosition(position.getX(), position.getY()), "X");
-    }
-
-    public Position getPosition() {
-        return position;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 }

@@ -10,6 +10,7 @@ import com.googlecode.lanterna.screen.Screen;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Arena {
     private int height;
@@ -18,15 +19,24 @@ public class Arena {
 
     private List<Wall> walls;
     private Position position;
+    private List<Coin> coins;
 
     public Arena(int height, int width) {
         this.height = height;
         this.width = width;
-        position = new Position(10,10);
-        hero = new Hero(position);
+        //position = new Position(10,10);
+        hero = new Hero(width/2,height/2);
         this.walls = createWalls();
+        this.coins = createCoins();
     }
-
+    private List<Coin> createCoins() {
+        Random random = new Random();
+        ArrayList<Coin> coins = new ArrayList<>();
+        for (int i = 0; i < 5; i++)
+            coins.add(new Coin(random.nextInt(width - 2) + 1,
+                    random.nextInt(height - 2) + 1));
+        return coins;
+    }
     private List<Wall> createWalls() {
 
         List<Wall> walls = new ArrayList<>();
@@ -47,6 +57,8 @@ public class Arena {
         if (key.getKeyType() == KeyType.ArrowRight) moveHero(hero.moveRight());
         if (key.getKeyType() == KeyType.ArrowUp) moveHero(hero.moveUp());
         if (key.getKeyType() == KeyType.ArrowDown) moveHero(hero.moveDown());
+        retrieveCoins();
+
     }
     public void moveHero(Position position) {
         if (canHeroMove(position))
@@ -64,6 +76,14 @@ public class Arena {
         hero.draw(graphics);
 
         for (Wall wall : walls) wall.draw(graphics);
+        for (Coin coin : coins) coin.draw(graphics);
 
+    }
+    private void retrieveCoins() {
+        for (Coin coin : coins)
+            if (hero.position.getX() == coin.getPosition().getX() && hero.position.getY() == coin.getPosition().getY()) {
+                coins.remove(coin);
+                break;
+            }
     }
 }
